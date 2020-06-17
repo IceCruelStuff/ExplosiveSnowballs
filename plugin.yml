@@ -3,3 +3,14 @@ main: IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs
 api: 3.13.0
 version: 1.0.0
 author: IceCruelStuff
+
+commands:
+  snowballs:
+    description: "Manages ExplosiveSnowballs plugin"
+    usage: "/snowballs <args>"
+    permission: snowballs.command
+
+permission:
+  snowballs.command:
+    default: op
+    description: "Permission for ExplosiveSnowballs plugin"
