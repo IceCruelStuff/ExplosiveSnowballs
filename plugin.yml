@@ -1,4 +1,5 @@
 name: ExplosiveSnowballs
+main: IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs
 api: 3.13.0
 version: 1.0.0
 author: IceCruelStuff
