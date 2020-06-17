@@ -45,7 +45,6 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         switch ($command->getName()) {
             case "snowballs":
                 if ($sender->hasPermission("snowballs.command")) {
-                    
                     switch ($args[0]) {
                         case "enable":
                         case "on":
