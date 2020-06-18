@@ -16,7 +16,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
-use IceCruelStuff\ExplosiveSnowballs\Explosion;
+use IceCruelStuff\ExplosiveSnowballs\CommandUI;
 
 use function count;
 
@@ -33,11 +33,15 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
             $this->saveResource('config.yml');
         }
         $this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML, array(
-            "disable-explosive-snowballs" => "false"
+            "disable-explosive-snowballs" => "false",
+            "disable-ui" => "true"
         ));
         $this->config->save();
         if (!$this->config->get("disable-explosive-snowballs")) {
             $this->config->set("disable-explosive-snowballs", false);
+        }
+        if (!$this->config->get("disable-ui")) {
+            $this->config->set("disable-ui", true);
         }
     }
 
@@ -45,6 +49,13 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         switch ($command->getName()) {
             case "snowballs":
                 if ($sender->hasPermission("snowballs.command")) {
+                    if ($this->config->get("disable-ui") == false && $sender instanceof Player) {
+                        $ui = new CommandUI();
+                        $ui->sendForm($sender);
+                        $form = $ui->form;
+                        $form->sendToPlayer($sender);
+                        return true;
+                    }
                     switch ($args[0]) {
                         case "enable":
                         case "on":
@@ -55,6 +66,8 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             $this->config->set("disable-explosive-snowballs", true);
                             break;
                     }
+                } else {
+                    $sender->sendMessage("You do not have the permission to use this command")
                 }
         }
     }
