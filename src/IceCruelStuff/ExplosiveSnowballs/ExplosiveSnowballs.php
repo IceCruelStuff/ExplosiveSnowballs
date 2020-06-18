@@ -67,7 +67,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             break;
                     }
                 } else {
-                    $sender->sendMessage("You do not have the permission to use this command")
+                    $sender->sendMessage("You do not have the permission to use this command");
                 }
         }
     }
