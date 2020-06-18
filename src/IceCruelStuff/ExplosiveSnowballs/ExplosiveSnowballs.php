@@ -59,15 +59,25 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                     switch ($args[0]) {
                         case "enable":
                         case "on":
-                            $this->config->set("disable-explosive-snowballs", false);
-                            $this->config->save();
-                            $sender->sendMessage("ExplosiveSnowballs are now enabled");
+                            if ($this->config->get("disable-explosive-snowballs") == false) {
+                                $sender->sendMessage("ExplosiveSnowballs are already enabled");
+                                return false;
+                            } elseif (!$this->config->get("disable-explosive-snowballs") == false) {
+                                $this->config->set("disable-explosive-snowballs", false);
+                                $this->config->save();
+                                $sender->sendMessage("ExplosiveSnowballs are now enabled");
+                            }
                             break;
                         case "disable":
                         case "off":
-                            $this->config->set("disable-explosive-snowballs", true);
-                            $this->config->save();
-                            $sender->sendMessage("ExplosiveSnowballs are now disabled");
+                            if ($this->config->get("disable-explosive-snowballs") == true) {
+                                $sender->sendMessage("ExplosiveSnowballs are already disabled");
+                                return false;
+                            } elseif (!$this->config->get("disable-explosive-snowballs") == true) {
+                                $this->config->set("disable-explosive-snowballs", true);
+                                $this->config->save();
+                                $sender->sendMessage("ExplosiveSnowballs are now disabled");
+                            }
                             break;
                     }
                 } else {
