@@ -33,8 +33,8 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
             $this->saveResource('config.yml');
         }
         $this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML, array(
-            "disable-explosive-snowballs" => "false",
-            "disable-ui" => "true"
+            "disable-explosive-snowballs" => false,
+            "disable-ui" => true
         ));
         $this->config->save();
         if (!$this->config->get("disable-explosive-snowballs")) {
@@ -60,11 +60,13 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                         case "enable":
                         case "on":
                             $this->config->set("disable-explosive-snowballs", false);
+                            $this->config->save();
                             $sender->sendMessage("ExplosiveSnowballs are now enabled");
                             break;
                         case "disable":
                         case "off":
                             $this->config->set("disable-explosive-snowballs", true);
+                            $this->config->save();
                             $sender->sendMessage("ExplosiveSnowballs are now disabled");
                             break;
                     }
