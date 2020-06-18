@@ -60,16 +60,19 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                         case "enable":
                         case "on":
                             $this->config->set("disable-explosive-snowballs", false);
+                            $sender->sendMessage("ExplosiveSnowballs are now enabled");
                             break;
                         case "disable":
                         case "off":
                             $this->config->set("disable-explosive-snowballs", true);
+                            $sender->sendMessage("ExplosiveSnowballs are now disabled");
                             break;
                     }
                 } else {
                     $sender->sendMessage("You do not have the permission to use this command");
                 }
         }
+        return true;
     }
 
     public function onProjectileHit(ProjectileHitEvent $event) {
