@@ -23,7 +23,7 @@ class SnowballsCommand extends Form {
         $this->plugin = $plugin;
     }
 
-    public function sendForm() : void {
+    public function sendForm($sender) : void {
         $form = new SimpleForm(function (Player $player, data = null) {
             if ($data === null) {
                 return;
@@ -51,7 +51,7 @@ class SnowballsCommand extends Form {
         $form->setTitle("ExplosiveSnowballs");
         $form->addButton("Enable");
         $form->addButton("Disable");
-        $form->sendToPlayer($player);
+        $form->sendToPlayer($sender);
         return $form;
     }
 
