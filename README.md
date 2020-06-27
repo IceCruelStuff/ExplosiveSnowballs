@@ -6,7 +6,7 @@ A simple plugin that adds Explosive snowballs to **PocketMine-MP**.
 
 You need to have permission **snowballs.command** to use this command.
 
-```license
+```
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
    You may obtain a copy of the License at
