@@ -48,10 +48,13 @@ class SnowballsCommand extends Form {
             case 1:
                 $this->config->set("disable-explosive-snowballs", true);
                 break;
+            case 2:
+                $sender->sendMessage("Closed");
         }
         $form->setTitle("ExplosiveSnowballs");
         $form->addButton("Enable");
         $form->addButton("Disable");
+        $form->addButton("Close");
         $form->sendToPlayer($sender);
         return $form;
     }
