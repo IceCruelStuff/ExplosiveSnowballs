@@ -1,5 +1,5 @@
 # ExplosiveSnowballs
-A plugin that adds explosive snowballs to **PocketMine-MP**.
+A explosive snowballs plugin for **PocketMine-MP**.
 
 ## How to use?
 **Command:** **/snowballs <on | off>**
