@@ -50,6 +50,7 @@ class SnowballsCommand extends Form {
                 break;
             case 2:
                 $sender->sendMessage("Closed");
+                break;
         }
         $form->setTitle("ExplosiveSnowballs");
         $form->addButton("Enable");
