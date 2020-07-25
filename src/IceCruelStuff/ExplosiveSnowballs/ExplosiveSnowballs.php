@@ -28,7 +28,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
     public $config;
     public $player;
 
-    public function onEnable() {
+    public function onEnable() : void {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         @mkdir($this->getDataFolder());
         if (!file_exists($this->getDataFolder() . "config.yml")) {
