@@ -77,10 +77,16 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         switch ($command->getName()) {
             case "snowballs":
                 if ($sender->hasPermission("snowballs.command")) {
-                    if ($this->config->get("disable-ui") == false && $sender instanceof Player) {
-                        $ui = new CommandUI();
-                        $ui->sendForm($sender);
-                        return true;
+                    if ($sender instanceof Player) {
+                        if ($this->config->get("disable-ui") == false) {
+                            $ui = new CommandUI();
+                            $ui->sendForm($sender);
+                            return true;
+                        } else {
+                            $sender->sendMessage(TextFormat::RED . 'UI is disabled. To enable UI, set "disable-ui" to false in the config.yml');
+                        }
+                    } else {
+                        $sender->sendMessage(TextFormat::RED . "Please use this command in-game");
                     }
                     switch ($args[0]) {
                         case "enable":
