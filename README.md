@@ -8,6 +8,15 @@ This command will enable/disable explosive snowballs.
 
 You need to have permission **snowballs.command** to use this command.
 
+## How to a explosive snowball
+To get a explosive snowball, execute the following command.
+
+**Command:** **/givesnowball <player/user> <item name/snowball name>**
+
+The item name can be whatever you want it to be.
+
+You need to have permission **snowballs.give** to use this command.
+
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
