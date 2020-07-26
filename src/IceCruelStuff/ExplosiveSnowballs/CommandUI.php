@@ -27,10 +27,11 @@ use pocketmine\command\CommandSender;
 use pocketmine\form\Form;
 use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
+use jojoe77777\FormAPI\Form;
 use jojoe77777\FormAPI\SimpleForm;
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
 
-class SnowballsCommand extends Form {
+class CommandUI extends Form {
 
     public $form;
     public $player;
