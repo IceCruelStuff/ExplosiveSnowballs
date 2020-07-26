@@ -8,6 +8,12 @@ This command will enable/disable explosive snowballs.
 
 You need to have permission **snowballs.command** to use this command.
 
+## User Interface
+
+Do **/snowballs** with no arguments to open a UI.
+
+**Note: this will only work if you are in-game and have disable-ui set to false in the config.yml.**
+
 ## How to a explosive snowball
 To get a explosive snowball, execute the following command.
 
