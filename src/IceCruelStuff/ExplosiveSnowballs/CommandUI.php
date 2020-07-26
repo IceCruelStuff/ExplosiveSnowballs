@@ -28,7 +28,6 @@ use pocketmine\form\Form;
 use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
-
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
 
 class SnowballsCommand extends Form {
@@ -59,6 +58,7 @@ class SnowballsCommand extends Form {
         if (!$this->config->get("disable-ui")) {
             $this->config->set("disable-ui", true);
         }
+
         switch ($data) {
             case 0:
                 $this->config->set("disable-explosive-snowballs", false);
