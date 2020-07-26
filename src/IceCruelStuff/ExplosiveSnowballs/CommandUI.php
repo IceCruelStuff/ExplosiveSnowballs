@@ -27,7 +27,6 @@ use pocketmine\command\CommandSender;
 use pocketmine\form\Form;
 use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
-use jojoe77777\FormAPI\Form;
 use jojoe77777\FormAPI\SimpleForm;
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
 
@@ -53,6 +52,7 @@ class CommandUI extends Form {
         if (!file_exists($this->getDataFolder() . "config.yml")) {
             $this->saveResource('config.yml');
         }
+
         if (!$this->config->get("disable-explosive-snowballs")) {
             $this->config->set("disable-explosive-snowballs", false);
         }
