@@ -77,40 +77,43 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         switch ($command->getName()) {
             case "snowballs":
                 if ($sender->hasPermission("snowballs.command")) {
-                    if ($sender instanceof Player) {
-                        if ($this->config->get("disable-ui") == false) {
-                            $ui = new CommandUI();
-                            $ui->sendForm($sender);
-                            return true;
+                    if (!isset($args[0])) {
+                        if ($sender instanceof Player) {
+                            if ($this->config->get("disable-ui") == false) {
+                                $ui = new CommandUI();
+                                $ui->sendForm($sender);
+                                return true;
+                            } else {
+                                $sender->sendMessage(TextFormat::RED . 'UI is disabled. To enable UI, set "disable-ui" to false in the config.yml');
+                            }
                         } else {
-                            $sender->sendMessage(TextFormat::RED . 'UI is disabled. To enable UI, set "disable-ui" to false in the config.yml');
+                            $sender->sendMessage(TextFormat::RED . "Please use this command in-game");
                         }
                     } else {
-                        $sender->sendMessage(TextFormat::RED . "Please use this command in-game");
-                    }
-                    switch ($args[0]) {
-                        case "enable":
-                        case "on":
-                            if ($this->config->get("disable-explosive-snowballs") == false) {
-                                $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already enabled");
-                                return false;
-                            } elseif (!$this->config->get("disable-explosive-snowballs") == false) {
-                                $this->config->set("disable-explosive-snowballs", false);
-                                $this->config->save();
-                                $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now enabled");
-                            }
-                            break;
-                        case "disable":
-                        case "off":
-                            if ($this->config->get("disable-explosive-snowballs") == true) {
-                                $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already disabled");
-                                return false;
-                            } elseif (!$this->config->get("disable-explosive-snowballs") == true) {
-                                $this->config->set("disable-explosive-snowballs", true);
-                                $this->config->save();
-                                $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now disabled");
-                            }
-                            break;
+                        switch ($args[0]) {
+                            case "enable":
+                            case "on":
+                                if ($this->config->get("disable-explosive-snowballs") == false) {
+                                    $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already enabled");
+                                    return false;
+                                } elseif (!$this->config->get("disable-explosive-snowballs") == false) {
+                                    $this->config->set("disable-explosive-snowballs", false);
+                                    $this->config->save();
+                                    $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now enabled");
+                                }
+                                break;
+                            case "disable":
+                            case "off":
+                                if ($this->config->get("disable-explosive-snowballs") == true) {
+                                    $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already disabled");
+                                    return false;
+                                } elseif (!$this->config->get("disable-explosive-snowballs") == true) {
+                                    $this->config->set("disable-explosive-snowballs", true);
+                                    $this->config->save();
+                                    $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now disabled");
+                                }
+                                break;
+                        }
                     }
                 } else {
                     $sender->sendMessage(TextFormat::RED . "You do not have the permission to use this command");
