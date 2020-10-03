@@ -76,7 +76,6 @@ class CommandUI extends Form {
         $form->addButton("Disable");
         $form->addButton("Close");
         $form->sendToPlayer($sender);
-        return $form;
     }
 
 }
