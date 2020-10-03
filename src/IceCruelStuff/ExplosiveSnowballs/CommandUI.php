@@ -30,8 +30,8 @@ use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
 
-class CommandUI extends Main {
-/*
+class CommandUI {
+
     public $form;
     public $player;
 
@@ -39,7 +39,7 @@ class CommandUI extends Main {
 
     public function __construct(Main $plugin) {
         $this->plugin = $plugin;
-    }*/
+    }
 
     public function sendForm($sender) : void {
         $form = new SimpleForm(function (Player $player, $data = null) {
