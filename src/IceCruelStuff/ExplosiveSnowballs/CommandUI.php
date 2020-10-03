@@ -30,7 +30,7 @@ use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
 
-class CommandUI extends Form {
+class CommandUI {
 
     public $form;
     public $player;
