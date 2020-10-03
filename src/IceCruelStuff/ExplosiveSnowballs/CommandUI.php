@@ -42,7 +42,7 @@ class CommandUI extends Form {
     }
 
     public function sendForm($sender) : void {
-        $form = new SimpleForm(function (Player $player, data = null) {
+        $form = new SimpleForm(function (Player $player, $data = null) {
             if ($data === null) {
                 return;
             }
