@@ -35,7 +35,7 @@ use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use pocketmine\nbt\JsonNBTParser;
+use pocketmine\nbt\JsonNbtParser;
 use pocketmine\item\Item;
 use pocketmine\utils\TextFormat;
 use IceCruelStuff\ExplosiveSnowballs\CommandUI;
@@ -69,6 +69,10 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         }
         if (!$this->config->get("default-snowball-name")) {
             $this->config->set("default-snowball-name", "Explosive Snowball");
+            $this->config->save();
+        }
+        if (!$this->config->get("explosion-size")) {
+            $this->config->set("explosion-size", 7);
             $this->config->save();
         }
     }
@@ -129,7 +133,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             if (isset($args[1])) {
                                 $itemName = implode(array_slice($args, 3), " ");
                             }
-                            $item = Item::get(Item::SNOWBALL, 0, 1, JsonNBTParser::parseJSON("{display:Name:{$itemName}}"));
+                            $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
                             $target->getInventory()->addItem($item);
                             $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $item->getName());
                             return true;
@@ -154,8 +158,9 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                 return;
             }
             $location = $entity->getLocation();
+            $size = $this->config->get("explosion-size");
 
-            $explosion = new Explosion($location);
+            $explosion = new Explosion($location, $size, null);
             $explosion->explodeA();
             $explosion->explodeB();
         }
