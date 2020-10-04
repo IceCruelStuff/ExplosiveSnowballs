@@ -46,31 +46,32 @@ class CommandUI {
             if ($data === null) {
                 return;
             }
+
+            $config = $this->plugin->config;
+            @mkdir($this->plugin->getDataFolder());
+            if (!file_exists($this->plugin->getDataFolder() . "config.yml")) {
+                $this->plugin->saveResource('config.yml');
+            }
+
+            if (!$this->plugin->config->get("disable-explosive-snowballs")) {
+                $this->plugin->config->set("disable-explosive-snowballs", false);
+            }
+            if (!$this->plugin->config->get("disable-ui")) {
+                $this->plugin->config->set("disable-ui", true);
+            }
+
+            switch ($data) {
+                case 0:
+                    $this->config->set("disable-explosive-snowballs", false);
+                    break;
+                case 1:
+                    $this->config->set("disable-explosive-snowballs", true);
+                    break;
+                case 2:
+                    $sender->sendMessage("Closed");
+                    break;
+            }
         });
-        $config = $plugin->config;
-        @mkdir($this->getDataFolder());
-        if (!file_exists($this->getDataFolder() . "config.yml")) {
-            $this->saveResource('config.yml');
-        }
-
-        if (!$this->config->get("disable-explosive-snowballs")) {
-            $this->config->set("disable-explosive-snowballs", false);
-        }
-        if (!$this->config->get("disable-ui")) {
-            $this->config->set("disable-ui", true);
-        }
-
-        switch ($data) {
-            case 0:
-                $this->config->set("disable-explosive-snowballs", false);
-                break;
-            case 1:
-                $this->config->set("disable-explosive-snowballs", true);
-                break;
-            case 2:
-                $sender->sendMessage("Closed");
-                break;
-        }
         $form->setTitle("ExplosiveSnowballs");
         $form->addButton("Enable");
         $form->addButton("Disable");
