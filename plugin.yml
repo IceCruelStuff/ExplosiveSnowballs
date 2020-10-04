@@ -9,6 +9,7 @@ commands:
     description: "Manages ExplosiveSnowballs plugin"
     usage: "/snowballs <args>"
     permission: snowballs.command
+    aliases: [sb]
   givesnowball:
     description: "Gives user a explosive snowball"
     usage: "/givesnowball <player> <name>"
