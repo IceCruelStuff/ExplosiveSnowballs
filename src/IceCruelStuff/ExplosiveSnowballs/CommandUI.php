@@ -62,13 +62,13 @@ class CommandUI {
 
             switch ($data) {
                 case 0:
-                    $this->config->set("disable-explosive-snowballs", false);
+                    $this->plugin->config->set("disable-explosive-snowballs", false);
                     break;
                 case 1:
-                    $this->config->set("disable-explosive-snowballs", true);
+                    $this->plugin->config->set("disable-explosive-snowballs", true);
                     break;
                 case 2:
-                    $sender->sendMessage("Closed");
+                    $player->sendMessage("Closed");
                     break;
             }
         });
