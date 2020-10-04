@@ -7,7 +7,7 @@ author: IceCruelStuff
 commands:
   snowballs:
     description: "Manages ExplosiveSnowballs plugin"
-    usage: "/snowballs <args>"
+    usage: "/snowballs <on | off>"
     permission: snowballs.command
     aliases: [sb]
   givesnowball:
