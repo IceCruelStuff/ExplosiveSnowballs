@@ -87,7 +87,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             if ($this->config->get("disable-ui") == false) {
                                 $ui = new CommandUI($this);
                                 $ui->sendForm($sender);
-                                return true;
+                                return false;
                             } else {
                                 $sender->sendMessage(TextFormat::RED . 'UI is disabled. To enable UI, set "disable-ui" to false in the config.yml');
                             }
