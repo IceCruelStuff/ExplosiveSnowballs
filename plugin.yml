@@ -14,6 +14,7 @@ commands:
     description: "Gives user a explosive snowball"
     usage: "/givesnowball <player> <name>"
     permission: snowballs.give
+    aliases: [gs]
 
 permission:
   snowballs.command:
