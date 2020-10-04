@@ -80,7 +80,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                     if (!isset($args[0])) {
                         if ($sender instanceof Player) {
                             if ($this->config->get("disable-ui") == false) {
-                                $ui = new CommandUI();
+                                $ui = new CommandUI($this);
                                 $ui->sendForm($sender);
                                 return true;
                             } else {
