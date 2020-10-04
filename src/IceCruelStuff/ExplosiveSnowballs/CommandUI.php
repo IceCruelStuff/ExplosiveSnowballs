@@ -55,17 +55,21 @@ class CommandUI {
 
             if (!$this->plugin->config->get("disable-explosive-snowballs")) {
                 $this->plugin->config->set("disable-explosive-snowballs", false);
+                $this->plugin->config->save();
             }
             if (!$this->plugin->config->get("disable-ui")) {
                 $this->plugin->config->set("disable-ui", true);
+                $this->plugin->config->save();
             }
 
             switch ($data) {
                 case 0:
                     $this->plugin->config->set("disable-explosive-snowballs", false);
+                    $this->plugin->config->save();
                     break;
                 case 1:
                     $this->plugin->config->set("disable-explosive-snowballs", true);
+                    $this->plugin->config->save();
                     break;
                 case 2:
                     $player->sendMessage("Closed");
