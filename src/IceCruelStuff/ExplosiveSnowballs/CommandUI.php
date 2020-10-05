@@ -25,6 +25,7 @@ namespace IceCruelStuff\ExplosiveSnowballs;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\form\Form;
+use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
@@ -66,10 +67,12 @@ class CommandUI {
                 case 0:
                     $this->plugin->config->set("disable-explosive-snowballs", false);
                     $this->plugin->config->save();
+                    $player->sendMessage(TextFormat::RED . 'Explosive Snowballs have been enabled.');
                     break;
                 case 1:
                     $this->plugin->config->set("disable-explosive-snowballs", true);
                     $this->plugin->config->save();
+                    $player->sendMessage(TextFormat::RED . 'Explosive Snowballs have been disabled.')
                     break;
                 case 2:
                     $player->sendMessage("Closed");
