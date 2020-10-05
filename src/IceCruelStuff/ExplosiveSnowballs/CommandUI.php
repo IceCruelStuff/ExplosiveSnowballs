@@ -72,7 +72,7 @@ class CommandUI {
                 case 1:
                     $this->plugin->config->set("disable-explosive-snowballs", true);
                     $this->plugin->config->save();
-                    $player->sendMessage(TextFormat::RED . 'Explosive Snowballs have been disabled.')
+                    $player->sendMessage(TextFormat::RED . 'Explosive Snowballs have been disabled.');
                     break;
                 case 2:
                     $player->sendMessage("Closed");
