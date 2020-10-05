@@ -53,6 +53,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         if (!file_exists($this->getDataFolder() . "config.yml")) {
             $this->saveResource('config.yml');
         }
+
         $this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML, array(
             "disable-explosive-snowballs" => false,
             "disable-ui" => true,
@@ -60,18 +61,22 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
             "explosion-size" => 7
         ));
         $this->config->save();
+
         if (!$this->config->get("disable-explosive-snowballs")) {
             $this->config->set("disable-explosive-snowballs", false);
             $this->config->save();
         }
+
         if (!$this->config->get("disable-ui")) {
             $this->config->set("disable-ui", false);
             $this->config->save();
         }
+
         if (!$this->config->get("default-snowball-name")) {
             $this->config->set("default-snowball-name", "Explosive Snowball");
             $this->config->save();
         }
+
         if (!$this->config->get("explosion-size")) {
             $this->config->set("explosion-size", 7);
             $this->config->save();
@@ -100,7 +105,6 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             case "on":
                                 if ($this->config->get("disable-explosive-snowballs") == false) {
                                     $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already enabled");
-                                    return false;
                                 } elseif (!$this->config->get("disable-explosive-snowballs") == false) {
                                     $this->config->set("disable-explosive-snowballs", false);
                                     $this->config->save();
@@ -111,7 +115,6 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             case "off":
                                 if ($this->config->get("disable-explosive-snowballs") == true) {
                                     $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already disabled");
-                                    return false;
                                 } elseif (!$this->config->get("disable-explosive-snowballs") == true) {
                                     $this->config->set("disable-explosive-snowballs", true);
                                     $this->config->save();
@@ -130,9 +133,9 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                         $name = $args[0];
                         $target = $this->getServer()->getPlayer($name);
                         if ($target instanceof Player) {
-                            $itemName = "Explosive Snowball";
+                            $itemName = $this->config->get("default-snowball-name");
                             if (isset($args[1])) {
-                                $itemName = implode(array_slice($args, 3), " ");
+                                $itemName = implode(array_slice($args, 1), " ");
                             }
                             $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
                             $target->getInventory()->addItem($item);
