@@ -15,14 +15,25 @@ Do **/snowballs** with no arguments to open a UI.
 **Note: this will only work if you are in-game and have disable-ui set to false in the config.yml.**
 
 ## How to get a explosive snowball
+**Method 1**
+
 To get a explosive snowball, execute the following command.
 
 **Command:** **/givesnowball <player/user> <item name/snowball name>**
 
 The item name can be whatever you want it to be.
-
+<!--
+**Method 2**
+<!--
+Set `disable-ui` to false in `config.yml`. Then run the command `/sb` or `/snowball` in game.
+<!--
+That shoud open a User Interface. Select the `Give Snowball` option and enter the player you want to give snowballs to.
+<!--
+The custom name can be anything.
+<!--
+Both of these methods require you to have the permission **snowballs.give**.
+-->
 You need to have permission **snowballs.give** to use this command.
-
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
