@@ -38,7 +38,7 @@ use pocketmine\utils\Config;
 use pocketmine\nbt\JsonNbtParser;
 use pocketmine\item\Item;
 use pocketmine\utils\TextFormat;
-use IceCruelStuff\ExplosiveSnowballs\CommandUI;
+use IceCruelStuff\ExplosiveSnowballs\Command\CommandUI;
 use function count;
 
 class ExplosiveSnowballs extends PluginBase implements Listener {
