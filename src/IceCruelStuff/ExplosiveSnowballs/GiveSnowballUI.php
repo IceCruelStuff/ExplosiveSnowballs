@@ -22,6 +22,8 @@ declare(strict_types=1);
 
 namespace IceCruelStuff\ExplosiveSnowballs;
 
+use pocketmine\item\Item;
+use pocketmine\nbt\JsonNbtParser;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
@@ -36,12 +38,21 @@ class GiveSnowballUI {
     }
 
     public function sendCustomForm($sender) {
-        $customForm = new CustomForm(function (Player $customPlayer, array $customData = null) {
+        $customForm = new CustomForm(function (Player $customPlayer, array $data = null) {
             if ($data === null) {
                 return;
             }
 
-            
+            $name = $data[1];
+            $target = $this->plugin->getServer()->getPlayer($name);
+            if ($target instanceof Player) {
+                $itemName = implode(array_slice($data, 2), " ");
+                $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
+                $target->getInventory()->addItem($item);
+                $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $item->getName());
+            } else {
+                $sender->sendMessage(TextFormat::RED . $name . " not found");
+            }
 
             switch ($data) {
                 case 0:
