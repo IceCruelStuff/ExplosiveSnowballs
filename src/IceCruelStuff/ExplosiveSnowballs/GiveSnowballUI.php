@@ -47,9 +47,10 @@ class GiveSnowballUI {
             $target = $this->plugin->getServer()->getPlayer($name);
             if ($target instanceof Player) {
                 $itemName = implode(array_slice($data, 2), " ");
-                $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
+                $amount = $data[3];
+                $item = Item::get(Item::SNOWBALL, 0, $amount, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
                 $target->getInventory()->addItem($item);
-                $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $item->getName());
+                $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $amount . $item->getName());
             } else {
                 $sender->sendMessage(TextFormat::RED . $name . " not found");
             }
