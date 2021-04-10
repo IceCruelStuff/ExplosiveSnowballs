@@ -30,24 +30,29 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\Item;
 use pocketmine\level\Explosion;
 use pocketmine\level\Position;
-use pocketmine\Player;
+use pocketmine\nbt\JsonNbtParser;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use pocketmine\nbt\JsonNbtParser;
-use pocketmine\item\Item;
 use pocketmine\utils\TextFormat;
+use pocketmine\Player;
 use IceCruelStuff\ExplosiveSnowballs\Command\CommandUI;
 use function count;
 
 class ExplosiveSnowballs extends PluginBase implements Listener {
+
+    const EXPLOSIVE = 100;
 
     public $block;
     public $config;
     public $player;
 
     public function onEnable() : void {
+        Enchantment::registerEnchantment(new Enchantment(self::ExPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
+
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         @mkdir($this->getDataFolder());
         if (!file_exists($this->getDataFolder() . "config.yml")) {
