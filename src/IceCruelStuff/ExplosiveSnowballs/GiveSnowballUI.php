@@ -22,18 +22,21 @@ declare(strict_types=1);
 
 namespace IceCruelStuff\ExplosiveSnowballs;
 
+use pocketmine\item\enchantment\EnchantmentInstance;
+use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 use pocketmine\nbt\JsonNbtParser;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
+use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 
 class GiveSnowballUI {
-/*
+
     private $plugin;
 
-    public function __construct($plugin) {
+    public function __construct(ExplosiveSnowballs $plugin) {
         $this->plugin = $plugin;
     }
 
@@ -48,16 +51,12 @@ class GiveSnowballUI {
             if ($target instanceof Player) {
                 $itemName = implode(array_slice($data, 2), " ");
                 $amount = $data[3];
-                $item = Item::get(Item::SNOWBALL, 0, $amount, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
+                $item = Item::get(Item::SNOWBALL, 0, $amount, JsonNbtParser::parseJSON("{display:Name:{" . $itemName . "}}"));
+                $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(ExplosiveSnowballs::EXPLOSIVE)));
                 $target->getInventory()->addItem($item);
                 $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $amount . $item->getName());
             } else {
                 $sender->sendMessage(TextFormat::RED . $name . " not found");
-            }
-
-            switch ($data) {
-                case 0:
-                    
             }
         });
         $customForm->setTitle(TextFormat::AQUA . 'Explosive Snowballs');
@@ -67,5 +66,5 @@ class GiveSnowballUI {
         $customForm->addSlider('Amount', 1, 100);
         $customForm->sendToPlayer($sender);
     }
-*/
+
 }
