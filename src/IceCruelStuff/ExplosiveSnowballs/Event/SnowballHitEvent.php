@@ -2,7 +2,7 @@
 
 namespace IceCruelStuff\ExplosiveSnowballs\Event;
 
-use pocketmine\entity\projectile\SnowballEntity;
+use pocketmine\entity\projectile\Snowball as SnowballEntity;
 use pocketmine\event\ProjectileHitEvent;
 use pocketmine\item\Snowball;
 use pocketmine\math\RayTraceResult;
