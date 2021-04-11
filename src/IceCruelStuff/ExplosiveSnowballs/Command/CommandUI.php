@@ -79,9 +79,9 @@ class CommandUI {
                     if ($player->hasPermission("snowballs.give")) {
                         $ui = new GiveSnowballUI($this);
                         $ui->sendCustomForm($player);
-                    } else {
-                        $player->sendMessage(TextFormat::RED . 'You do not have permission to use this command');
+                        break;
                     }
+                    $player->sendMessage(TextFormat::RED . 'You do not have permission to use this command');
                     break;
                 case 3:
                     $player->sendMessage('Closed');
