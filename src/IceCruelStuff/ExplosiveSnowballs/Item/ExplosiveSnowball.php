@@ -2,9 +2,11 @@
 
 namespace IceCruelStuff\ExplosiveSnowballs\Item;
 
+use pocketmine\entity\EntityIds;
 use pocketmine\entity\Entity;
 use pocketmine\item\Snowball;
 use pocketmine\math\Vector3;
+use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
 use IceCruelStuff\ExplosiveSnowballs\Event\SnowballLaunchEvent;
 
