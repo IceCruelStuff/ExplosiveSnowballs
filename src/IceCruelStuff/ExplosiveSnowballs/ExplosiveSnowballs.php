@@ -30,7 +30,9 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\ProjectileHitEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\ItemFactory;
 use pocketmine\item\Item;
 use pocketmine\level\Explosion;
 use pocketmine\level\Position;
@@ -40,6 +42,7 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use IceCruelStuff\ExplosiveSnowballs\Command\CommandUI;
+use IceCruelStuff\ExplosiveSnowballs\Item\ExplosiveSnowball;
 use function count;
 
 class ExplosiveSnowballs extends PluginBase implements Listener {
@@ -52,6 +55,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
 
     public function onEnable() : void {
         Enchantment::registerEnchantment(new Enchantment(self::ExPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
+        ItemFactory::registerItem(new ExplosiveSnowball(), true);
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         @mkdir($this->getDataFolder());
@@ -142,7 +146,8 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
                             if (isset($args[1])) {
                                 $itemName = implode(array_slice($args, 1), " ");
                             }
-                            $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{$itemName}}"));
+                            $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{" . $itemName . "}}"));
+                            $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(self::EXPLOSIVE)));
                             $target->getInventory()->addItem($item);
                             $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $item->getName());
                             return true;
