@@ -26,7 +26,7 @@ class SnowballHitEvent extends ProjectileHitEvent {
         return $this->rayTraceResult;
     }
 
-    public function getSnowball() {
+    public function getSnowball() : Snowball {
         return $this->snowball;
     }
 
