@@ -83,9 +83,9 @@ class CustomSnowballEntity extends Snowball {
             /** @var SnowballHitEvent|null $ev */
             $ev = null;
             if ($entityHit !== null) {
-                $ev = new SnowballHitEntityEvent($this, $hitResult, $entityHit, $this->snowball);
+                $ev = new SnowballHitEntityEvent($this, $hitResult, $this->snowball, $entityHit);
             } elseif ($blockHit !== null) {
-                $ev = new SnowballHitBlockEvent($this, $hitResult, $blockHit, $this->snowball);
+                $ev = new SnowballHitBlockEvent($this, $hitResult, $this->snowball, $blockHit);
             } else {
                 assert(false, "unknown hit type");
             }
