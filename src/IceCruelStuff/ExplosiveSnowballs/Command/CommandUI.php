@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace IceCruelStuff\ExplosiveSnowballs;
+namespace IceCruelStuff\Command\ExplosiveSnowballs;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -30,6 +30,7 @@ use pocketmine\Player;
 use jojoe77777\FormAPI\CustomForm;
 use jojoe77777\FormAPI\SimpleForm;
 use IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs as Main;
+use IceCruelStuff\ExplosiveSnowballs\GiveSnowballUI;
 
 class CommandUI {
 
@@ -43,7 +44,7 @@ class CommandUI {
     }
 
     public function sendForm($sender) : void {
-        $form = new SimpleForm(function (Player $player, $data = null) {
+        $form = new SimpleForm(function (Player $player, array $data = null) {
             if ($data === null) {
                 return;
             }
@@ -75,13 +76,22 @@ class CommandUI {
                     $player->sendMessage(TextFormat::RED . 'Explosive Snowballs have been disabled.');
                     break;
                 case 2:
-                    $player->sendMessage("Closed");
+                    if ($player->hasPermission("snowballs.give")) {
+                        $ui = new GiveSnowballUI($this);
+                        $ui->sendCustomForm($player);
+                        break;
+                    }
+                    $player->sendMessage(TextFormat::RED . 'You do not have permission to use this command');
+                    break;
+                case 3:
+                    $player->sendMessage('Closed');
                     break;
             }
         });
         $form->setTitle("ExplosiveSnowballs");
         $form->addButton("Enable");
         $form->addButton("Disable");
+        $form->addButton("Give Snowball");
         $form->addButton("Close");
         $form->sendToPlayer($sender);
     }
