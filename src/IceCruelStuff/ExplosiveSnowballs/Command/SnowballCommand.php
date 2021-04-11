@@ -50,21 +50,21 @@ class SnowballCommand extends Command implements PluginIdentifiableCommand {
             switch ($args[0]) {
                 case "on":
                 case "enable":
-                    if ($this->config->get("disable-explosive-snowballs") == false) {
+                    if ($this->plugin->config->get("disable-explosive-snowballs") == false) {
                         $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already enabled");
-                    } elseif (!$this->config->get("disable-explosive-snowballs") == false) {
-                        $this->config->set("disable-explosive-snowballs", false);
-                        $this->config->save();
+                    } elseif (!$this->plugin->config->get("disable-explosive-snowballs") == false) {
+                        $this->plugin->config->set("disable-explosive-snowballs", false);
+                        $this->plugin->config->save();
                         $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now enabled");
                     }
                     break;
                 case "off":
                 case "disable":
-                    if ($this->config->get("disable-explosive-snowballs") == true) {
+                    if ($this->plugin->config->get("disable-explosive-snowballs") == true) {
                         $sender->sendMessage(TextFormat::RED . "ExplosiveSnowballs are already disabled");
-                    } elseif (!$this->config->get("disable-explosive-snowballs") == true) {
-                        $this->config->set("disable-explosive-snowballs", true);
-                        $this->config->save();
+                    } elseif (!$this->plugin->config->get("disable-explosive-snowballs") == true) {
+                        $this->plugin->config->set("disable-explosive-snowballs", true);
+                        $this->plugin->config->save();
                         $sender->sendMessage(TextFormat::GREEN . "ExplosiveSnowballs are now disabled");
                     }
                     break;
