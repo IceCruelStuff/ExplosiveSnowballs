@@ -20,7 +20,7 @@
 
 declare(strict_types=1);
 
-namespace IceCruelStuff\Command\ExplosiveSnowballs;
+namespace IceCruelStuff\ExplosiveSnowballs\Command;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
