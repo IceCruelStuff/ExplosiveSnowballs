@@ -18,8 +18,6 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace IceCruelStuff\ExplosiveSnowballs;
 
 use pocketmine\command\CommandSender;
