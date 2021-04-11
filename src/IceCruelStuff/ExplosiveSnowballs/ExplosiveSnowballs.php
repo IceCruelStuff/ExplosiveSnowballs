@@ -25,6 +25,7 @@ namespace IceCruelStuff\ExplosiveSnowballs;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
 use pocketmine\entity\projectile\Snowball as SnowballEntity;
+use pocketmine\entity\Entity;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\Listener;
@@ -42,6 +43,8 @@ use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
 use IceCruelStuff\ExplosiveSnowballs\Command\CommandUI;
+use IceCruelStuff\ExplosiveSnowballs\Entity\CustomSnowballEntity;
+use IceCruelStuff\ExplosiveSnowballs\Event\SnowballHitEvent;
 use IceCruelStuff\ExplosiveSnowballs\Item\ExplosiveSnowball;
 use function count;
 
@@ -55,6 +58,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
 
     public function onEnable() : void {
         Enchantment::registerEnchantment(new Enchantment(self::ExPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
+        Entity::registerEntity(CustomSnowballEntity::class, true, ['Snowball', 'minecraft:snowball']);
         ItemFactory::registerItem(new ExplosiveSnowball(), true);
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -165,18 +169,21 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
         return true;
     }
 
-    public function onProjectileHit(ProjectileHitEvent $event) {
+    public function onSnowballHit(SnowballHitEvent $event) {
         $entity = $event->getEntity();
+        $item = $event->getSnowball();
         if ($entity instanceof SnowballEntity) {
-            if ($this->config->get("disable-explosive-snowballs") == true) {
-                return;
-            }
-            $location = $entity->getLocation();
-            $size = $this->config->get("explosion-size");
+            if ($item->hasEnchantment(self::EXPLOSION)) {
+                if ($this->config->get("disable-explosive-snowballs") == true) {
+                    return;
+                }
+                $location = $entity->getLocation();
+                $size = $this->config->get("explosion-size");
 
-            $explosion = new Explosion($location, $size, null);
-            $explosion->explodeA();
-            $explosion->explodeB();
+                $explosion = new Explosion($location, $size, null);
+                $explosion->explodeA();
+                $explosion->explodeB();
+            }
         }
     }
 
