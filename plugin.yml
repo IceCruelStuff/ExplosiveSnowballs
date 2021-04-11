@@ -3,23 +3,3 @@ main: IceCruelStuff\ExplosiveSnowballs\ExplosiveSnowballs
 api: 3.15.0
 version: 1.0.1
 author: IceCruelStuff
-
-commands:
-  snowballs:
-    description: "Manages ExplosiveSnowballs plugin"
-    usage: "/snowballs <on | off>"
-    permission: snowballs.command
-    aliases: [sb]
-  givesnowball:
-    description: "Gives user a explosive snowball"
-    usage: "/givesnowball <player> <name>"
-    permission: snowballs.give
-    aliases: [gsb]
-
-permission:
-  snowballs.command:
-    default: op
-    description: "Permission for ExplosiveSnowballs plugin"
-  snowballs.give:
-    default: op
-    description: "Permission for give command"
