@@ -8,6 +8,7 @@ use pocketmine\item\Snowball;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
+use IceCruelStuff\ExplosiveSnowballs\Entity\CustomSnowballEntity;
 use IceCruelStuff\ExplosiveSnowballs\Event\SnowballLaunchEvent;
 
 class ExplosiveSnowball extends Snowball {
@@ -15,7 +16,7 @@ class ExplosiveSnowball extends Snowball {
     public function onClickAir(Player $player, Vector3 $directionVector) : bool {
         $nbt = Entity::createBaseNBT($player->add(0, $player->getEyeHeight(), 0), $directionVector, $player->yaw, $player->pitch);
         $this->addExtraTags($nbt);
-        $projectile = Entity::createEntity($this->getProjectileEntityType(), $player->getLevelNonNull(), $nbt, $player);
+        $projectile = new CustomSnowballEntity($player->getLevelNonNull(), $nbt, $this, $player);
         if ($projectile !== null) {
             $projectile->setMotion($projectile->getMotion()->multiply($this->getThrowForce()));
         }
