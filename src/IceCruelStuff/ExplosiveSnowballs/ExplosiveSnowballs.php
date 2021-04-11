@@ -36,6 +36,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Explosion;
 use pocketmine\level\Position;
 use pocketmine\nbt\JsonNbtParser;
+use pocketmine\permission\Permission;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
@@ -55,9 +56,11 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
     public $player;
 
     public function onEnable() : void {
-        Enchantment::registerEnchantment(new Enchantment(self::ExPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
+        Enchantment::registerEnchantment(new Enchantment(self::EXPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
         Entity::registerEntity(CustomSnowballEntity::class, true, ['Snowball', 'minecraft:snowball']);
         ItemFactory::registerItem(new ExplosiveSnowball(), true);
+        $this->getServer()->getPluginManager()->addPermission(new Permission("snowballs.command", "Allows player to use ExplosiveSnowballs commands", Permission::DEFAULT_OP));
+        $this->getServer()->getPluginManager()->addPermission(new Permission("snowballs.give", "Allows player to use /givesnowball command", Permission::DEFAULT_OP));
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         @mkdir($this->getDataFolder());
