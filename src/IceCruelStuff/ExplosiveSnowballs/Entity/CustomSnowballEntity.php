@@ -17,7 +17,7 @@ class CustomSnowballEntity extends Snowball {
 
     public $snowball;
 
-    public function __construct(Level $level, CompoundTag $nbt, SnowballItem $snowball = null, ?Entity $shootingEntity = null) {
+    public function __construct(Level $level, CompoundTag $nbt, SnowballItem $snowball, ?Entity $shootingEntity = null) {
         $this->snowball = $snowball;
         parent::__construct($level, $nbt);
         if ($shootingEntity !== null) {
