@@ -7,6 +7,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\Item;
+use pocketmine\nbt\JsonNbtParser;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 use pocketmine\Player;
@@ -45,7 +47,7 @@ class GiveSnowballCommand extends Command implements PluginIdentifiableCommand {
                     $itemName = implode(array_slice($args, 1), " ");
                 }
                 $item = Item::get(Item::SNOWBALL, 0, 1, JsonNbtParser::parseJSON("{display:Name:{" . $itemName . "}}"));
-                $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(self::EXPLOSIVE)));
+                $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(ExplosiveSnowballs::EXPLOSIVE)));
                 $target->getInventory()->addItem($item);
                 $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $item->getName());
             } else {
