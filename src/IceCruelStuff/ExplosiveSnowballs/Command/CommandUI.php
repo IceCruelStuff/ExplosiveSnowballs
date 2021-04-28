@@ -49,20 +49,7 @@ class CommandUI {
                 return;
             }
 
-            $config = $this->plugin->config;
-            @mkdir($this->plugin->getDataFolder());
-            if (!file_exists($this->plugin->getDataFolder() . "config.yml")) {
-                $this->plugin->saveResource('config.yml');
-            }
-
-            if (!$this->plugin->config->get("disable-explosive-snowballs")) {
-                $this->plugin->config->set("disable-explosive-snowballs", false);
-                $this->plugin->config->save();
-            }
-            if (!$this->plugin->config->get("disable-ui")) {
-                $this->plugin->config->set("disable-ui", true);
-                $this->plugin->config->save();
-            }
+            $this->createConfig();
 
             switch ($data) {
                 case 0:
@@ -94,6 +81,23 @@ class CommandUI {
         $form->addButton("Give Snowball");
         $form->addButton("Close");
         $form->sendToPlayer($sender);
+    }
+
+    private function createConfig() {
+        $config = $this->plugin->config;
+        @mkdir($this->plugin->getDataFolder());
+        if (!file_exists($this->plugin->getDataFolder() . "config.yml")) {
+            $this->plugin->saveResource('config.yml');
+        }
+
+        if (!$this->plugin->config->get("disable-explosive-snowballs")) {
+            $this->plugin->config->set("disable-explosive-snowballs", false);
+            $this->plugin->config->save();
+        }
+        if (!$this->plugin->config->get("disable-ui")) {
+            $this->plugin->config->set("disable-ui", true);
+            $this->plugin->config->save();
+        }
     }
 
 }
