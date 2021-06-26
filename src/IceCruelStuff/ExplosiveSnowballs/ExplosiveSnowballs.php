@@ -51,9 +51,7 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
 
     const EXPLOSIVE = 100;
 
-    public $block;
     public $config;
-    public $player;
 
     public function onEnable() : void {
         Enchantment::registerEnchantment(new Enchantment(self::EXPLOSIVE, "Explosive", Enchantment::RARITY_RARE, Enchantment::SLOT_NONE, Enchantment::SLOT_ALL, 1));
