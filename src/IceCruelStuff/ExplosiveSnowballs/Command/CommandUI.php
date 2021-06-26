@@ -44,7 +44,7 @@ class CommandUI {
     }
 
     public function sendForm($sender) : void {
-        $form = new SimpleForm(function (Player $player, array $data = null) {
+        $form = new SimpleForm(function (Player $player, $data = null) {
             if ($data === null) {
                 return;
             }
@@ -84,9 +84,9 @@ class CommandUI {
     }
 
     private function createConfig() {
-        $config = $this->plugin->config;
-        @mkdir($this->plugin->getDataFolder());
-        if (!file_exists($this->plugin->getDataFolder() . "config.yml")) {
+        $dataFolder = $this->plugin->getDataFolder();
+        @mkdir($dataFolder);
+        if (!file_exists($dataFolder . "config.yml")) {
             $this->plugin->saveResource('config.yml');
         }
 
