@@ -68,12 +68,12 @@ class ExplosiveSnowballs extends PluginBase implements Listener {
             $this->saveResource('config.yml');
         }
 
-        $this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML, array(
+        $this->config = new Config($this->getDataFolder() . 'config.yml', Config::YAML, [
             "disable-explosive-snowballs" => false,
             "disable-ui" => true,
             "default-snowball-name" => "Explosive Snowball",
             "explosion-size" => 7
-        ));
+        ]);
         $this->config->save();
 
         if (!$this->config->get("disable-explosive-snowballs")) {
