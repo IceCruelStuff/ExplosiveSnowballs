@@ -41,7 +41,7 @@ class GiveSnowballUI {
     }
 
     public function sendCustomForm($sender) {
-        $customForm = new CustomForm(function (Player $customPlayer, array $data = null) {
+        $customForm = new CustomForm(function (Player $customPlayer, $data = null) {
             if ($data === null) {
                 return;
             }
@@ -51,7 +51,8 @@ class GiveSnowballUI {
             if ($target instanceof Player) {
                 $itemName = implode(array_slice($data, 2), " ");
                 $amount = $data[3];
-                $item = Item::get(Item::SNOWBALL, 0, $amount, JsonNbtParser::parseJSON("{display:Name:{" . $itemName . "}}"));
+                $item = Item::get(Item::SNOWBALL, 0, $amount);
+                $item->setDisplayName($itemName);
                 $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(ExplosiveSnowballs::EXPLOSIVE)));
                 $target->getInventory()->addItem($item);
                 $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $amount . $item->getName());
