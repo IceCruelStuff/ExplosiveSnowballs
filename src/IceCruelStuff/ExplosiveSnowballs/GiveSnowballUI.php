@@ -55,7 +55,7 @@ class GiveSnowballUI {
                 $item->setDisplayName($itemName);
                 $item->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(ExplosiveSnowballs::EXPLOSIVE)));
                 $target->getInventory()->addItem($item);
-                $sender->sendMessage(TextFormat::GREEN . "Gave " . $target->getName() . $amount . $item->getName());
+                $sender->sendMessage(TextFormat::GREEN . $amount . $item->getName() . "has been given to " . $target->getName());
             } else {
                 $sender->sendMessage(TextFormat::RED . $name . " not found");
             }
